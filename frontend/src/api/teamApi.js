@@ -1,0 +1,48 @@
+const teams = [
+  {
+    name: "Alextina Ditarson",
+    title: "UX Designer",
+    image: "assets/img/team/team-1.jpg",
+    alt_text: "image",
+    link: "/about-me",
+    link_facebook: "#",
+    link_twitter: "#",
+    link_youtube: "#",
+    link_pinterest: "#",
+  },
+  {
+    name: "Ken F. Berry",
+    title: "Product Manager",
+    image: "assets/img/team/team-1.jpg",
+    alt_text: "image",
+    link: "/about-me",
+    link_facebook: "#",
+    link_twitter: "#",
+    link_youtube: "#",
+    link_pinterest: "#",
+  },
+  {
+    name: "Jonathan Mercado",
+    title: "UI Designer",
+    image: "assets/img/team/team-1.jpg",
+    alt_text: "image",
+    link: "/about-me",
+    link_facebook: "#",
+    link_twitter: "#",
+    link_youtube: "#",
+    link_pinterest: "#",
+  },
+  {
+    name: "David D. Rethman",
+    title: "Web Developer",
+    image: "assets/img/team/team-1.jpg",
+    alt_text: "image",
+    link: "/about-me",
+    link_facebook: "#",
+    link_twitter: "#",
+    link_youtube: "#",
+    link_pinterest: "#",
+  },
+];
+
+export default teams;
