@@ -105,7 +105,7 @@ router.patch(
         req.headers.authorization,
         "PRIV_123"
       );
-      console.log(userDetail, 28);
+      // console.log(userDetail, 28);
       if (userDetail._doc.userType !== "ADMIN") {
         return res.send({ code: 403, message: "Unauthorized" });
       }

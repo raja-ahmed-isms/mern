@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import { Form, Button, Container } from "react-bootstrap";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 const Editblog = () => {
@@ -24,7 +24,7 @@ const Editblog = () => {
       });
     };
     fetch();
-  }, []);
+  }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,9 +38,15 @@ const Editblog = () => {
       .patch(`http://localhost:5000/api/updateBlog/${id}`, formData, {
         headers: {
           "content-type": "multipart/formdata",
+          Authorization: localStorage.getItem("token"),
         },
       })
-      .then((res) => alert(res.data.message))
+      .then((res) => {
+        if (res.data.code === 403 && res.data.message === "Token Expired!") {
+          localStorage.setItem("token", null);
+        }
+        alert(res.data.message);
+      })
       .then(navigate("/blogs"));
 
     setBlogTitle("");
@@ -58,6 +64,10 @@ const Editblog = () => {
         }}
       ></section>
       <div className="container">
+        <Link to="/blogs" className="btn btn-primary">
+          Back
+        </Link>
+        <br />
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="mb-3 col-md-3 form-group">
             <label>Blog Title</label>
@@ -83,7 +93,6 @@ const Editblog = () => {
               value={description}
             ></textarea>
           </div>
-
           <div className="form-group mb-3 col-md-3">
             <label>Author</label>
             <input
@@ -96,7 +105,6 @@ const Editblog = () => {
               value={author}
             />
           </div>
-
           <div className="form-group mb-3 col-md-3">
             <label>Blog Image</label>
             <input
@@ -108,8 +116,13 @@ const Editblog = () => {
                 setBlogImage(e.target.files[0]);
               }}
             />
+            {/* <img
+              src={`../upload/${blogImage}`}
+              width={200}
+              height={200}
+              alt=""
+            /> */}
           </div>
-
           <button className="btn btn-primary" variant="primary" type="submit">
             Submit
           </button>
